@@ -1,3 +1,5 @@
+.DS_Store
+
 patient/.idea/
 patient/.vscode/
 patient/node_modules/
