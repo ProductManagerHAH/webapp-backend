@@ -11,6 +11,7 @@ patient/.nyc_output/
 patient/logs/
 
 # don't check in  env files
+patient/.env
 patient/.env.prod
 patient/.env.staging
 patient/**/.DS_Store
@@ -29,6 +30,7 @@ doctor/.nyc_output/
 doctor/logs/
 
 # don't check in  env files
+doctor/.env
 doctor/.env.prod
 doctor/.env.staging
 doctor/**/.DS_Store
@@ -47,6 +49,7 @@ gateway/.nyc_output/
 gateway/logs/
 
 # don't check in  env files
+gateway/.env
 gateway/.env.prod
 gateway/.env.staging
 gateway/**/.DS_Store
@@ -67,6 +70,7 @@ admin/.nyc_output/
 admin/logs/
 
 # don't check in  env files
+admin/.env
 admin/.env.prod
 admin/.env.staging
 admin/**/.DS_Store
