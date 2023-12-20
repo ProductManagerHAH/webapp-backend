@@ -6,6 +6,8 @@ import swaggerUi from 'swagger-ui-express';
 import swaggerDocument from '../swagger.json'
 import registerRoutes from './routes';
 import addErrorHandler from './middleware/error-handler';
+import { EMAIL_CONFIRM_ROUTE } from './constants/emailConstants';
+import EmailConfirmationAPI from './api/emailAPI';
 
 
 
@@ -39,6 +41,10 @@ export default class App {
     private routes(): void {
         this.express.get('/', this.basePathRoute);
         this.express.get('/web', this.parseRequestHeader, this.basePathRoute);
+
+        // Email Routers
+         this.express.use(EMAIL_CONFIRM_ROUTE, this.confirmEmail);
+
         
         this.express.use('/', registerRoutes());
     }
@@ -68,6 +74,12 @@ export default class App {
 
     private basePathRoute(request: express.Request, response: express.Response): void {
         response.json({ message: 'base path' });
+    }
+
+    private confirmEmail(request: express.Request, response: express.Response,next: NextFunction): void {
+       const emailApi = new EmailConfirmationAPI();
+        emailApi.sendEmail(response, request.body.email,request.body.password, next);
+
     }
 
    

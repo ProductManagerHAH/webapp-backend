@@ -6,7 +6,7 @@ export default function initDBConnection(callback: () => void) {
     // Set up mongoose connection
 
 
-    const mongoDB = process.env.MONGODB_URI ;
+    const mongoDB = process.env.MONGODB_URI ; 
     mongoose.connect(mongoDB);
     mongoose.Promise = global.Promise;
     const db = mongoose.connection;
