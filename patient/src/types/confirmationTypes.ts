@@ -3,4 +3,5 @@ export interface IConfirmation    {
     email: string,
     password:string,
     confirmationId: string,
+    used: boolean
 }

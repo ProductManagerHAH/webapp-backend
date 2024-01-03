@@ -16,6 +16,9 @@ const ConfirmationSchema = new Schema<IConfirmation>({
     confirmationId: {
         type: String,required:true
     },
+    used: {
+        type: Boolean,required:true
+    }
 }, { timestamps: true });
 
 

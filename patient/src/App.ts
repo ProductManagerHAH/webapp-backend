@@ -8,6 +8,10 @@ import registerRoutes from './routes';
 import addErrorHandler from './middleware/error-handler';
 import { EMAIL_CONFIRM_ROUTE } from './constants/emailConstants';
 import EmailConfirmationAPI from './api/emailAPI';
+import { VERIFICAITON } from './constants/verificationConstants';
+import VerifyApi from './api/verifyAPI';
+import { SIGN_IN_ROUTE } from './constants/patientConstants';
+import PatientApi from './api/patientApi';
 
 
 
@@ -43,7 +47,15 @@ export default class App {
         this.express.get('/web', this.parseRequestHeader, this.basePathRoute);
 
         // Email Routers
-         this.express.use(EMAIL_CONFIRM_ROUTE, this.confirmEmail);
+         this.express.post(EMAIL_CONFIRM_ROUTE, this.confirmEmail);
+
+
+         //Verifcation Routers
+         this.express.post(VERIFICAITON, this.verify);
+
+
+         //Patient Routers
+         this.express.post(SIGN_IN_ROUTE, this.signin);
 
         
         this.express.use('/', registerRoutes());
@@ -79,6 +91,18 @@ export default class App {
     private confirmEmail(request: express.Request, response: express.Response,next: NextFunction): void {
        const emailApi = new EmailConfirmationAPI();
         emailApi.sendEmail(response, request.body.email,request.body.password, next);
+
+    }
+
+    private verify(request: express.Request, response: express.Response,next: NextFunction): void {
+       const verifyApi = new VerifyApi();
+        verifyApi.checkAndVerify(response, request.body.verificationId, next);
+
+    }
+
+    private signin(request: express.Request, response: express.Response,next: NextFunction): void {
+       const patientAPI = new PatientApi();
+        patientAPI.signIn(response, request.body.email, request.body.password, next);
 
     }
 

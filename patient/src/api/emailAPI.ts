@@ -37,14 +37,19 @@ export default  class EmailConfirmationAPI {
       res.json({
         message: 'Email already exists',
         status: 200,
-        data: []
+        data: false
       });
     } else {
        try {
-      const appDir = dirname(require.main.filename);
+         const appDir = dirname(require.main.filename);
         readHTMLFile(`${appDir}/components/emailPages/emailConfirmation.html`, (err: any, html: any) => {
             if (err) {
                 console.log('error reading file', err);
+                res.json({
+                    status:200,
+                    data: false,
+                    message:'There was an error, reading the document',
+                  });
                 return;
             }
 
@@ -52,47 +57,60 @@ export default  class EmailConfirmationAPI {
 
             const template = handlebars.compile(html);
             const replacements = {
-                linkId: `http://localhost:3000/verify/${linkId}`,
+                link: `http://localhost:3000/verify/${linkId}`,
             };
 
 
 
             const htmlToSend = template(replacements);
 
-            const transporter = nodemailer.createTransport({
-                host: 'smtp.zoho.com',
-                secure: true,
-                port: 465,
+         
+            const transport = nodemailer.createTransport({
+                host: 'smtp.zeptomail.eu',
+                port: 587,
                 auth: {
-                    user: 'unashe@visionisprimary',
-                    pass: 'cwwwwHDrfpaj'
+                user: 'emailapikey',
+                pass: 'yA6KbHsI4w//kz0FSBE11sWP+tw1/axq3Sux5n3kfMF1e4S03KE/hkdpItvoITra3NfZ4f4FbYtCII24vtFeeZY0M9MDfJTGTuv4P2uV48xh8ciEYNYhhJ+gALkXFqZBeB0lDCozQvkiWA=='
                 }
             });
 
 
 
-            const mailOptions = {
-                from: 'noreply@healthathome.co.zw',
-                to: email,
-                subject:  'Health at Home Email Verification',
-                html: htmlToSend
-            };
+
+              const mailOptions = {
+                  from: '"Welcome Team" <noreply@healthathome.co.zw>',
+                  to: email,
+                  subject: 'Health at Home Email Verification',
+                  html: htmlToSend,
+              };
+
+              transport.sendMail(mailOptions, (error:any, info:any) => {
+                  if (error) {
+                  return console.log(error);
+                  }
+                  console.log('Successfully sent');
+                  console.log(info.response);
+                  const emailService = new EmailServiceClass();
+                  emailService.addConfirmation(email,password,linkId);
+                  res.json({
+                    status:200,
+                    data: true,
+                    message:'Email sent',
+                  });
+
+                  return true;
+                                  
+              });
+
+            
 
 
-            transporter.sendMail(mailOptions, (error: any, info: { response: any; }) => {
-                if (error) {
-                    console.error(error);
-                } else {
-                    console.log(info.response);
-                    const emailService = new EmailServiceClass();
-                    emailService.addConfirmation(email,password,linkId);
-                }
-            });
 
         });
 
       
     } catch (err) {
+             
             next(err);
             console.error(err);
         }

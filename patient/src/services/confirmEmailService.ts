@@ -24,6 +24,7 @@ export default class EmailServiceClass {
             email: email,
             password:password,
             confirmationId: confirmationId, 
+            used:false
         });
 
         return confirm.save();
