@@ -4,6 +4,7 @@
 	"description": "",
 	"main": "index.js",
 	"types": "./types/global.d.ts",
+	"type": "module",
 	"scripts": {
 		"start": "node index.js",
 		"build": "npm run lint && cp .env ./build/.env ",
@@ -24,7 +25,7 @@
 		"test": "NODE_ENV=test jest --coverage",
 		"test:watch": "jest --watch"
 	},
-	"author": "Santosh Shinde",
+	"author": "Unashe Siwawa",
 	"license": "Apache-2.0",
 	"dependencies": {
 		"@jswork/watermark": "^1.0.2",
