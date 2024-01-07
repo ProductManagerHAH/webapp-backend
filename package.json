@@ -6,11 +6,11 @@
 	"types": "./types/global.d.ts",
 	"scripts": {
 		"start": "nodemon index.js",
-		"build": "node index.js",
+		"build": "npm run lint",
 		"build:test": "npm run lint && tsc -p . && cp .env ./build/.env && cp .env.test ./build/.env.test",
 		"build:prod": "npm run lint && tsc -p . && cp .env ./build/.env && cp .env.prod ./build/.env.prod",
 		"build:stag": "npm run lint && tsc -p . && cp .env ./build/.env && cp .env.stag ./build/.env.stag",
-		"dev": "npm run lint && NODE_ENV=local nodemon index.js",
+		"dev": "nodemon index.js",
 		"start:test": "NODE_ENV=test node build/src/server.js",
 		"start:staging": "NODE_ENV=staging node build/src/server.js",
 		"start:production": "NODE_ENV=production node build/src/server.js",

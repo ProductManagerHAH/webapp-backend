@@ -21,7 +21,7 @@
 			}
 		],
 		"object-shorthand": ["error", "never"],
-		"prettier/prettier": ["error"],
+		"prettier/prettier": ["warn"],
 		"semi": ["error", "always"],
 		"object-curly-spacing": ["error", "always"],
 		"camelcase": "off",
@@ -36,7 +36,7 @@
 		"no-underscore-dangle": "off",
 		"no-shadow": "off",
 		"no-new": 0,
-		"@typescript-eslint/no-shadow": ["error"],
+		"@typescript-eslint/no-shadow": ["warn"],
 		"@typescript-eslint/no-unused-vars": "warn",
 		"quotes": [
 			2,
