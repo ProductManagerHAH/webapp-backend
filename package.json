@@ -6,7 +6,7 @@
 	"types": "./types/global.d.ts",
 	"scripts": {
 		"start": "node index.js",
-		"build": "npm run lint && cp .env ./build/.env && npm install ",
+		"build": "npm run lint && cp .env ./build/.env ",
 		"build:test": "npm run lint && tsc -p . && cp .env ./build/.env && cp .env.test ./build/.env.test",
 		"build:prod": "npm run lint && tsc -p . && cp .env ./build/.env && cp .env.prod ./build/.env.prod",
 		"build:stag": "npm run lint && tsc -p . && cp .env ./build/.env && cp .env.stag ./build/.env.stag",
