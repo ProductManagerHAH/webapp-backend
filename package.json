@@ -49,7 +49,8 @@
 		"twilio": "^4.18.0",
 		"typescript": "^4.8.4",
 		"winston": "^3.8.2",
-		"nodemon": "^2.0.20"
+		"nodemon": "^2.0.20",
+		"ts-node": "^10.9.1"
 	},
 	"devDependencies": {
 		"@types/cors": "^2.8.12",
@@ -69,7 +70,6 @@
 		"mongoose-tsgen": "^9.0.10",
 		"prettier": "^2.7.1",
 		"supertest": "^6.3.1",
-		"ts-jest": "^29.0.3",
-		"ts-node": "^10.9.1"
+		"ts-jest": "^29.0.3"
 	}
 }
