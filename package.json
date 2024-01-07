@@ -5,7 +5,7 @@
 	"main": "index.js",
 	"types": "./types/global.d.ts",
 	"scripts": {
-		"start": "node src/server.ts",
+		"start": "nodemon index.js",
 		"build": "npm run lint && cp .env ./build/.env ",
 		"build:test": "npm run lint && tsc -p . && cp .env ./build/.env && cp .env.test ./build/.env.test",
 		"build:prod": "npm run lint && tsc -p . && cp .env ./build/.env && cp .env.prod ./build/.env.prod",
@@ -48,7 +48,8 @@
 		"swagger-ui-express": "^4.6.0",
 		"twilio": "^4.18.0",
 		"typescript": "^4.8.4",
-		"winston": "^3.8.2"
+		"winston": "^3.8.2",
+		"nodemon": "^2.0.20"
 	},
 	"devDependencies": {
 		"@types/cors": "^2.8.12",
