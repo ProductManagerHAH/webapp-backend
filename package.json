@@ -4,7 +4,6 @@
 	"description": "",
 	"main": "index.js",
 	"types": "./types/global.d.ts",
-	"type": "module",
 	"scripts": {
 		"start": "node index.js",
 		"build": "npm run lint && cp .env ./build/.env ",
